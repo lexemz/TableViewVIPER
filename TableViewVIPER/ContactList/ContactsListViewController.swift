@@ -16,7 +16,7 @@ protocol ContactsListViewControllerOutputProtocol {
     
     init(view: ContactsListViewControllerInputProtocol)
     func viewDidLoad()
-    func contact(adIndex indexPath: IndexPath) -> Contact
+    func contact(adIndex indexPath: IndexPath) -> Contact?
 }
 
 class ContactsListViewController: UIViewController {
@@ -46,7 +46,7 @@ extension ContactsListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath)
-        let contact = presenter.contact(adIndex: indexPath)
+        guard let contact = presenter.contact(adIndex: indexPath) else { return UITableViewCell() }
         var content = cell.defaultContentConfiguration()
         
         content.text = contact.name.fullName

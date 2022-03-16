@@ -15,9 +15,11 @@ class ContactsListPresenter: ContactsListViewControllerOutputProtocol {
     unowned let view: ContactsListViewControllerInputProtocol
     var interactor: ContactsListInteractorInputProtocol!
     
-    var songs: [Contact] = []
+    var dataStore: ContactsListDataStore?
+    
     var contactsCount: Int {
-        songs.count
+        guard let dataStore = dataStore else { return 0 }
+        return dataStore.contacts.count
     }
     
     required init(view: ContactsListViewControllerInputProtocol) {
@@ -28,14 +30,14 @@ class ContactsListPresenter: ContactsListViewControllerOutputProtocol {
         interactor.getSongs()
     }
     
-    func contact(adIndex indexPath: IndexPath) -> Contact {
-        songs[indexPath.row]
+    func contact(adIndex indexPath: IndexPath) -> Contact? {
+        dataStore?.contacts[indexPath.row]
     }
 }
 
 extension ContactsListPresenter: ContactsListInteractorOutputProtocol {
     func songsDidRecive(with dataStore: ContactsListDataStore) {
-        self.songs = dataStore.contacts
+        self.dataStore = dataStore
         view.reloadData()
     }
 }
