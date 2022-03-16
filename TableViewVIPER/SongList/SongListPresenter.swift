@@ -27,6 +27,10 @@ class SongListPresenter: SongListViewControllerOutputProtocol {
     func viewDidLoad() {
         interactor.getSongs()
     }
+    
+    func song(adIndex indexPath: IndexPath) -> Song {
+        songs[indexPath.row]
+    }
 }
 
 extension SongListPresenter: SongListInteractorOutputProtocol {

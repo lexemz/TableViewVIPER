@@ -13,10 +13,10 @@ protocol SongListViewControllerInputProtocol: AnyObject {
 
 protocol SongListViewControllerOutputProtocol {
     var songsCount: Int { get }
-    var songs: [Song] { get }
     
     init(view: SongListViewControllerInputProtocol)
     func viewDidLoad()
+    func song(adIndex indexPath: IndexPath) -> Song
 }
 
 class SongListViewController: UIViewController {
@@ -47,7 +47,7 @@ extension SongListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath)
-        let song = presenter.songs[indexPath.row]
+        let song = presenter.song(adIndex: indexPath)
         var content = cell.defaultContentConfiguration()
         
         content.text = song.name
