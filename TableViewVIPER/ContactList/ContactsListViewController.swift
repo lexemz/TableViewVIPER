@@ -41,24 +41,24 @@ class ContactsListViewController: UIViewController {
 
 extension ContactsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.contactsCount
+        print(presenter.contactsCount)
+        return presenter.contactsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath)
-        guard let contact = presenter.contact(adIndex: indexPath) else { return UITableViewCell() }
-        var content = cell.defaultContentConfiguration()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath) as? ContactViewCell,
+              let contact = presenter.contact(adIndex: indexPath) else { return UITableViewCell() }
         
-        content.text = contact.name.fullName
-        content.secondaryText = contact.phone
+        cell.configure(with: contact)
         
-        cell.contentConfiguration = content
         return cell
     }
 }
 
 extension ContactsListViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableview.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 extension ContactsListViewController: ContactsListViewControllerInputProtocol {

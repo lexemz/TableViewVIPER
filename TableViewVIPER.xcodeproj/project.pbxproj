@@ -18,6 +18,7 @@
 		78863C3027E0C55B00D2C5B5 /* ContactsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78863C2F27E0C55B00D2C5B5 /* ContactsListConfigurator.swift */; };
 		78863C3227E0C67A00D2C5B5 /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78863C3127E0C67A00D2C5B5 /* Contact.swift */; };
 		78E127F527E1EE3A00DBC8ED /* NetworkMaganer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E127F427E1EE3A00DBC8ED /* NetworkMaganer.swift */; };
+		78E1280227E2008600DBC8ED /* ContactViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E1280127E2008600DBC8ED /* ContactViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		78863C2F27E0C55B00D2C5B5 /* ContactsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsListConfigurator.swift; sourceTree = "<group>"; };
 		78863C3127E0C67A00D2C5B5 /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		78E127F427E1EE3A00DBC8ED /* NetworkMaganer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkMaganer.swift; sourceTree = "<group>"; };
+		78E1280127E2008600DBC8ED /* ContactViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				78863C2B27E0C54800D2C5B5 /* ContactsListPresenter.swift */,
 				78863C2D27E0C55100D2C5B5 /* ContactsListInteractor.swift */,
 				78863C2F27E0C55B00D2C5B5 /* ContactsListConfigurator.swift */,
+				78E1280327E2009600DBC8ED /* ContactCell */,
 			);
 			path = ContactList;
 			sourceTree = "<group>";
@@ -104,6 +107,14 @@
 				78E127F427E1EE3A00DBC8ED /* NetworkMaganer.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		78E1280327E2009600DBC8ED /* ContactCell */ = {
+			isa = PBXGroup;
+			children = (
+				78E1280127E2008600DBC8ED /* ContactViewCell.swift */,
+			);
+			path = ContactCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,6 +193,7 @@
 				78863C2C27E0C54800D2C5B5 /* ContactsListPresenter.swift in Sources */,
 				78863C1727E0C46100D2C5B5 /* AppDelegate.swift in Sources */,
 				78E127F527E1EE3A00DBC8ED /* NetworkMaganer.swift in Sources */,
+				78E1280227E2008600DBC8ED /* ContactViewCell.swift in Sources */,
 				78863C3027E0C55B00D2C5B5 /* ContactsListConfigurator.swift in Sources */,
 				78863C1927E0C46100D2C5B5 /* SceneDelegate.swift in Sources */,
 				78863C2E27E0C55100D2C5B5 /* ContactsListInteractor.swift in Sources */,
