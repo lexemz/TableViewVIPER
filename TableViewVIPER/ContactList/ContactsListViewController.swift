@@ -7,22 +7,22 @@
 
 import UIKit
 
-protocol SongListViewControllerInputProtocol: AnyObject {
+protocol ContactsListViewControllerInputProtocol: AnyObject {
     func reloadData()
 }
 
-protocol SongListViewControllerOutputProtocol {
-    var songsCount: Int { get }
+protocol ContactsListViewControllerOutputProtocol {
+    var contactsCount: Int { get }
     
-    init(view: SongListViewControllerInputProtocol)
+    init(view: ContactsListViewControllerInputProtocol)
     func viewDidLoad()
-    func song(adIndex indexPath: IndexPath) -> Song
+    func contact(adIndex indexPath: IndexPath) -> Contact
 }
 
-class SongListViewController: UIViewController {
-    var presenter: SongListViewControllerOutputProtocol!
+class ContactsListViewController: UIViewController {
+    var presenter: ContactsListViewControllerOutputProtocol!
     
-    private let configurator: SongListConfiguratorInputProtocol = SongListConfigurator()
+    private let configurator: ContactsListConfiguratorInputProtocol = ContactsListConfigurator()
 
     @IBOutlet var tableview: UITableView!
     
@@ -30,39 +30,38 @@ class SongListViewController: UIViewController {
         super.viewDidLoad()
         configurator.configure(with: self)
         
+        title = "Contacts"
         
         tableview.dataSource = self
         tableview.delegate = self
         
         presenter.viewDidLoad()
     }
-    
-    
 }
 
-extension SongListViewController: UITableViewDataSource {
+extension ContactsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.songsCount
+        presenter.contactsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath)
-        let song = presenter.song(adIndex: indexPath)
+        let contact = presenter.contact(adIndex: indexPath)
         var content = cell.defaultContentConfiguration()
         
-        content.text = song.name
-        content.secondaryText = song.artist
+        content.text = contact.name.fullName
+        content.secondaryText = contact.phone
         
         cell.contentConfiguration = content
         return cell
     }
 }
 
-extension SongListViewController: UITableViewDelegate {
+extension ContactsListViewController: UITableViewDelegate {
     
 }
 
-extension SongListViewController: SongListViewControllerInputProtocol {
+extension ContactsListViewController: ContactsListViewControllerInputProtocol {
     func reloadData() {
         tableview.reloadData()
     }
