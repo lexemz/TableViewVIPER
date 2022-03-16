@@ -15,7 +15,7 @@ class ContactsListPresenter: ContactsListViewControllerOutputProtocol {
     unowned let view: ContactsListViewControllerInputProtocol
     var interactor: ContactsListInteractorInputProtocol!
     
-    var dataStore: ContactsListDataStore?
+    private var dataStore: ContactsListDataStore?
     
     var contactsCount: Int {
         guard let dataStore = dataStore else { return 0 }

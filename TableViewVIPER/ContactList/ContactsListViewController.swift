@@ -41,15 +41,15 @@ class ContactsListViewController: UIViewController {
 
 extension ContactsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(presenter.contactsCount)
-        return presenter.contactsCount
+        presenter.contactsCount
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath) as? ContactViewCell,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath) as? ContactCellView,
               let contact = presenter.contact(adIndex: indexPath) else { return UITableViewCell() }
         
-        cell.configure(with: contact)
+        let cellConfigurator: ContactCellConfiguratorInputProtocol = ContactCellConfigurator()
+        cellConfigurator.configure(with: cell, and: contact)
         
         return cell
     }
