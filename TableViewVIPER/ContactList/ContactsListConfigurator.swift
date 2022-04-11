@@ -7,16 +7,12 @@
 
 import Foundation
 
-protocol ContactsListConfiguratorInputProtocol {
-    func configure(with VC: ContactsListViewController)
-}
-
-class ContactsListConfigurator: ContactsListConfiguratorInputProtocol {
-    func configure(with VC: ContactsListViewController) {
-        let presenter = ContactsListPresenter(view: VC)
+final class ContactsListConfigurator {
+    static func configure(with viewController: ContactsListViewController) {
+        let presenter = ContactsListPresenter(view: viewController)
         let interactor = ContactsListInteractor(presenter: presenter)
         
-        VC.presenter = presenter
+        viewController.presenter = presenter
         presenter.interactor = interactor
     }
 }

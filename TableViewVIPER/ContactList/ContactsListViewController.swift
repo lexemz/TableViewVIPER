@@ -21,14 +21,12 @@ protocol ContactsListViewControllerOutputProtocol {
 
 class ContactsListViewController: UIViewController {
     var presenter: ContactsListViewControllerOutputProtocol!
-    
-    private let configurator: ContactsListConfiguratorInputProtocol = ContactsListConfigurator()
 
     @IBOutlet var tableview: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configurator.configure(with: self)
+        ContactsListConfigurator.configure(with: self)
         
         title = "Contacts"
         
@@ -48,8 +46,7 @@ extension ContactsListViewController: UITableViewDataSource {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath) as? ContactCellView,
               let contact = presenter.contact(adIndex: indexPath) else { return UITableViewCell() }
         
-        let cellConfigurator: ContactCellConfiguratorInputProtocol = ContactCellConfigurator()
-        cellConfigurator.configure(with: cell, and: contact)
+        ContactCellConfigurator.configure(with: cell, and: contact)
         
         return cell
     }
