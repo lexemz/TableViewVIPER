@@ -43,7 +43,7 @@ extension ContactsListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "song", for: indexPath) as? ContactCellView,
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "contact", for: indexPath) as? ContactCellView,
               let contact = presenter.contact(adIndex: indexPath) else { return UITableViewCell() }
         
         ContactCellConfigurator.configure(with: cell, and: contact)
